@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Hompage
+
+https://zerosial.github.io/NomadClone-ReactMovie/
+
 ## Available Scripts
 
 ### `cd my-app`
