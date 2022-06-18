@@ -171,7 +171,7 @@ export async function getSearchResult({
 }) {
   return (
     await fetch(
-      `${BASE_PATH}/search/${category}?api_key=${API_KEY}&language=en-US&query=${keyword}&page=${page}`
+      `${BASE_PATH}/search/${category}?api_key=${API_KEY}&language=ko-KR&query=${keyword}&page=${page}`
     )
   ).json();
 }

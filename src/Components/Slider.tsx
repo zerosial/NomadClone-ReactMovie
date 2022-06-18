@@ -86,17 +86,18 @@ export const BtnSlide = styled(motion.div)<{ isRight: boolean }>`
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 40px;
+  width: 80px;
   border: none;
-  z-index: 2;
+  z-index: 4;
   color: ${(props) => props.theme.white.darker};
   svg {
     width: 40px;
     height: 40px;
+    color: rgba(255, 255, 255, 0.7);
   }
 `;
 
-export const Overlay = styled(motion.div)`
+const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
   width: 100%;
@@ -117,7 +118,7 @@ export const BigMovie = styled(motion.div)<{ scrollY: number }>`
   background-color: ${(props) => props.theme.black.lighter};
   border-radius: 15px;
   overflow: hidden;
-  z-index: 4;
+  z-index: 3;
 `;
 
 export const BigCover = styled.div<{ bgPhoto: string }>`
@@ -259,6 +260,17 @@ export const infoVariants = {
   },
 };
 
+export const BtnSlideVariants = {
+  normal: {
+    scale: 1,
+    backgroundColor: "rgba(0, 0, 0, 0)",
+  },
+  hover: {
+    scale: 1,
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+  },
+};
+
 export const offset = 6;
 
 export function Slider({ type }: { type: Types }) {
@@ -326,9 +338,13 @@ export function Slider({ type }: { type: Types }) {
         >
           <Category>
             {type === Types.now_playing
-              ? "now playing"
+              ? "상영 중"
               : type === Types.top_rated
-              ? "top rated"
+              ? "평점 높은"
+              : type === Types.popular
+              ? "인기있는"
+              : type === Types.upcoming
+              ? "곧 개봉"
               : type}
           </Category>
           <Row
@@ -371,7 +387,13 @@ export function Slider({ type }: { type: Types }) {
               ))}
           </Row>
         </AnimatePresence>
-        <BtnSlide onClick={decreaseIndex} isRight={false}>
+        <BtnSlide
+          onClick={decreaseIndex}
+          isRight={false}
+          variants={BtnSlideVariants}
+          initial="normal"
+          whileHover="hover"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 512"
@@ -380,7 +402,13 @@ export function Slider({ type }: { type: Types }) {
             <path d="M137.4 406.6l-128-127.1C3.125 272.4 0 264.2 0 255.1s3.125-16.38 9.375-22.63l128-127.1c9.156-9.156 22.91-11.9 34.88-6.943S192 115.1 192 128v255.1c0 12.94-7.781 24.62-19.75 29.58S146.5 415.8 137.4 406.6z" />
           </svg>
         </BtnSlide>
-        <BtnSlide onClick={increaseIndex} isRight={true}>
+        <BtnSlide
+          onClick={increaseIndex}
+          isRight={true}
+          variants={BtnSlideVariants}
+          initial="normal"
+          whileHover="hover"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 512"
@@ -430,7 +458,9 @@ export function Slider({ type }: { type: Types }) {
                       />
                     )}
                   </BigInfo>
-                  <BigOverview>{clickedMovie.overview}</BigOverview>
+                  <BigOverview>
+                    {clickedMovie.overview.slice(0, 220) + "..."}
+                  </BigOverview>
                   <BigSubInfo>
                     <div>
                       <span>Genres: </span>
@@ -457,9 +487,7 @@ export function SliderTvs({ type }: { type: TypeShows }) {
   const width = useWindowDimensions();
   const navigate = useNavigate();
   const bigTvMatch = useMatch(`/tv/tvs/${type}/:tvId`);
-  const { data, isLoading } = useQuery<ITvShows>(["tvs", type], () =>
-    getTvShows(type)
-  );
+  const { data } = useQuery<ITvShows>(["tvs", type], () => getTvShows(type));
   const { scrollY } = useViewportScroll();
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
@@ -515,12 +543,12 @@ export function SliderTvs({ type }: { type: TypeShows }) {
           custom={{ width, clickReverse }}
         >
           <Category>
-            {type === TypeShows.airing_today
-              ? "airing today"
-              : type === TypeShows.top_rated
-              ? "top rated"
+            {type === TypeShows.top_rated
+              ? "평점 높은"
               : type === TypeShows.on_the_air
-              ? "on the air"
+              ? "방영중"
+              : type === TypeShows.popular
+              ? "인기있는"
               : type}
           </Category>
           <Row
@@ -561,7 +589,13 @@ export function SliderTvs({ type }: { type: TypeShows }) {
               ))}
           </Row>
         </AnimatePresence>
-        <BtnSlide onClick={decreaseIndex} isRight={false}>
+        <BtnSlide
+          onClick={decreaseIndex}
+          isRight={false}
+          variants={BtnSlideVariants}
+          initial="normal"
+          whileHover="hover"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 512"
@@ -570,7 +604,13 @@ export function SliderTvs({ type }: { type: TypeShows }) {
             <path d="M137.4 406.6l-128-127.1C3.125 272.4 0 264.2 0 255.1s3.125-16.38 9.375-22.63l128-127.1c9.156-9.156 22.91-11.9 34.88-6.943S192 115.1 192 128v255.1c0 12.94-7.781 24.62-19.75 29.58S146.5 415.8 137.4 406.6z" />
           </svg>
         </BtnSlide>
-        <BtnSlide onClick={increaseIndex} isRight={true}>
+        <BtnSlide
+          onClick={increaseIndex}
+          isRight={true}
+          variants={BtnSlideVariants}
+          initial="normal"
+          whileHover="hover"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 512"
@@ -616,7 +656,9 @@ export function SliderTvs({ type }: { type: TypeShows }) {
                     </Adult>
                     <Ratings rating={clickedTvDetail?.vote_average as number} />
                   </BigInfo>
-                  <BigOverview>{clickedTv.overview}</BigOverview>
+                  <BigOverview>
+                    {clickedTv.overview.slice(0, 220) + "..."}
+                  </BigOverview>
                   <BigSubInfo>
                     <div>
                       <span>Genres: </span>

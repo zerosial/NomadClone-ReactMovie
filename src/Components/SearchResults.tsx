@@ -1,4 +1,4 @@
-import { useViewportScroll, AnimatePresence } from "framer-motion";
+import { useViewportScroll, AnimatePresence, motion } from "framer-motion";
 import { useQuery } from "react-query";
 import { useNavigate, useMatch } from "react-router-dom";
 import styled from "styled-components";
@@ -15,7 +15,6 @@ import { makeImagePath, Ratings } from "../Routes/UTILS";
 import {
   Box,
   Info,
-  Overlay,
   BigMovie,
   BigCover,
   BigTitle,
@@ -26,6 +25,15 @@ import {
   boxVariants,
   infoVariants,
 } from "./Slider";
+
+const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+`;
 
 const TemplateBox = styled.div`
   display: grid;
@@ -82,10 +90,10 @@ export function MoviesSearchResults({ keyword }: { keyword: string | null }) {
       (movie) => String(movie.id) === bigMovieMatch?.params.movieId
     );
 
-  const { data: clickedMovieDetail, isLoading: isLoadingDetail } =
-    useQuery<IGetMovieDetail>([bigMovieMatch?.params.movieId, "detail"], () =>
-      getMovieDetail(bigMovieMatch?.params.movieId)
-    );
+  const { data: clickedMovieDetail } = useQuery<IGetMovieDetail>(
+    [bigMovieMatch?.params.movieId, "detail"],
+    () => getMovieDetail(bigMovieMatch?.params.movieId)
+  );
 
   return noData ? (
     <TextExcept>No search results</TextExcept>
@@ -111,7 +119,7 @@ export function MoviesSearchResults({ keyword }: { keyword: string | null }) {
                     movie.backdrop_path || movie.poster_path,
                     "w500"
                   )
-                : "https://ang-projects.com/public/uploads/contents/testi-no-image.png"
+                : "https://github.com/zerosial/NomadClone-ReactMovie/blob/main/public/noImage.gif?raw=true"
             }
           >
             <Info variants={infoVariants}>
@@ -184,7 +192,9 @@ export function MoviesSearchResults({ keyword }: { keyword: string | null }) {
                       />
                     )}
                   </BigInfo>
-                  <BigOverview>{clickedMovie.overview}</BigOverview>
+                  <BigOverview>
+                    {clickedMovie.overview.slice(0, 220) + "..."}
+                  </BigOverview>
                   <BigSubInfo>
                     <div>
                       <span>Genres: </span>
@@ -272,7 +282,7 @@ export function TvsSearchResults({ keyword }: { keyword: string | null }) {
             bgPhoto={
               tv.backdrop_path || tv.poster_path !== null
                 ? makeImagePath(tv.backdrop_path || tv.poster_path, "w500")
-                : "https://ang-projects.com/public/uploads/contents/testi-no-image.png"
+                : "https://github.com/zerosial/NomadClone-ReactMovie/blob/main/public/noImage.gif?raw=true"
             }
           >
             <Info variants={infoVariants}>
@@ -294,7 +304,7 @@ export function TvsSearchResults({ keyword }: { keyword: string | null }) {
             bgPhoto={
               tv.backdrop_path || tv.poster_path !== null
                 ? makeImagePath(tv.backdrop_path || tv.poster_path, "w500")
-                : "https://ang-projects.com/public/uploads/contents/testi-no-image.png"
+                : "https://github.com/zerosial/NomadClone-ReactMovie/blob/main/public/noImage.gif?raw=true"
             }
           >
             <Info variants={infoVariants}>
@@ -345,7 +355,9 @@ export function TvsSearchResults({ keyword }: { keyword: string | null }) {
                       />
                     )}
                   </BigInfo>
-                  <BigOverview>{clickedTv.overview}</BigOverview>
+                  <BigOverview>
+                    {clickedTv.overview.slice(0, 220) + "..."}
+                  </BigOverview>
                   <BigSubInfo>
                     <div>
                       <span>Genres: </span>

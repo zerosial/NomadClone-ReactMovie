@@ -25,9 +25,10 @@ https://zerosial.github.io/NomadClone-ReactMovie/
 
 ### CSS
 
-- [ ] 메뉴바 가림 해결
+- [x] 메뉴바 가림 해결
+- [x] 박스 클릭시 나오는 설명 220자 제한
 - [ ] 좌우 슬라이스 버튼 투명화 애니메이션
-- [ ] 좌우 버튼과 그림이 겹칠 경우 나타나는 CSS 에러 개선
+- [x] 좌우 버튼과 그림이 겹칠 경우 나타나는 CSS 에러 개선
 - [ ] 폰트 최적화
 - [ ] 오버라이드시 좌우 명암 개선
 
@@ -37,7 +38,7 @@ https://zerosial.github.io/NomadClone-ReactMovie/
 - [ ] 시작시 나오는 Loading 화면 (붉은색) 개선
 - [ ] 각 타이틀 한글화 ( 검색창 포함 )
 - [ ] 검색창 외부 클릭시 자동 닫힘
-- [ ] 왼쪽 상단 NetFlix 버튼 클릭시 홈메뉴로 돌아가기
+- [x] 왼쪽 상단 NetFlix 버튼 클릭시 홈메뉴로 돌아가기
 
 ### Typescript
 

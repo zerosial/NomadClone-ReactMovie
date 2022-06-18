@@ -24,7 +24,6 @@ function Tv() {
             <Overview>{data?.results[bannerIndex].overview}</Overview>
           </Banner>
           <SliderTvs type={TypeShows.on_the_air} />
-          <SliderTvs type={TypeShows.airing_today} />
           <SliderTvs type={TypeShows.popular} />
           <SliderTvs type={TypeShows.top_rated} />
         </>

@@ -66,7 +66,6 @@ export enum Types {
 
 export enum TypeShows {
   "on_the_air" = "on_the_air",
-  "airing_today" = "airing_today",
   "popular" = "popular",
   "top_rated" = "top_rated",
 }
