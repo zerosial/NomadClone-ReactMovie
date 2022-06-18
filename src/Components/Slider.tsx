@@ -76,7 +76,7 @@ export const Info = styled(motion.div)`
   }
 `;
 
-export const BtnSlide = styled.div<{ isRight: boolean }>`
+export const BtnSlide = styled(motion.div)<{ isRight: boolean }>`
   position: absolute;
   right: ${(props) => (props.isRight ? 0 : null)};
   left: ${(props) => (props.isRight ? null : 0)};
@@ -361,7 +361,7 @@ export function Slider({ type }: { type: Types }) {
                           movie.backdrop_path || movie.poster_path,
                           "w500"
                         )
-                      : "https://ang-projects.com/public/uploads/contents/testi-no-image.png"
+                      : "https://github.com/zerosial/NomadClone-ReactMovie/blob/main/public/noImage.gif?raw=true"
                   }
                 >
                   <Info variants={infoVariants}>
@@ -544,7 +544,7 @@ export function SliderTvs({ type }: { type: TypeShows }) {
                   whileHover="hover"
                   transition={{
                     type: "tween",
-                  }} //transition을 props로 넣어줘야 끝날 때도 tween이 적용됨
+                  }}
                   bgPhoto={
                     tv.backdrop_path || tv.poster_path !== null
                       ? makeImagePath(
