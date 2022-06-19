@@ -16,7 +16,7 @@ export const Loader = styled.div`
   background-color: black;
 `;
 
-export const Banner = styled.div<{ bgPhoto: string }>`
+export const Banner = styled.div<{ bgphoto: string }>`
   height: 100vh;
   background-color: black;
   display: flex;
@@ -24,7 +24,7 @@ export const Banner = styled.div<{ bgPhoto: string }>`
   justify-content: center;
   padding: 60px;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
-    url(${(props) => props.bgPhoto});
+    url(${(props) => props.bgphoto});
   background-size: cover;
 `;
 
@@ -60,7 +60,7 @@ function Home() {
       ) : (
         <>
           <Banner
-            bgPhoto={makeImagePath(
+            bgphoto={makeImagePath(
               data?.results[bannerIndex].backdrop_path || ""
             )}
           >

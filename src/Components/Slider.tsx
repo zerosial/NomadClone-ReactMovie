@@ -13,13 +13,7 @@ import {
   ITvShowsDetail,
   getTvShowsDetail,
 } from "../api";
-import {
-  makeImagePath,
-  Ratings,
-  Types,
-  TypeShows,
-  useWindowDimensions,
-} from "../Routes/UTILS";
+import { makeImagePath, Ratings, Types, TypeShows } from "../Routes/UTILS";
 
 const SliderRow = styled.div`
   position: relative;
@@ -46,11 +40,11 @@ const Row = styled(motion.div)`
   width: 100%;
 `;
 
-export const Box = styled(motion.div)<{ bgPhoto: string }>`
+export const Box = styled(motion.div)<{ bgphoto: string }>`
   background-color: white;
   height: 200px;
   font-size: 64px;
-  background-image: url(${(props) => props.bgPhoto});
+  background-image: url(${(props) => props.bgphoto});
   background-size: cover;
   background-position: center center;
   &:first-child {
@@ -76,10 +70,8 @@ export const Info = styled(motion.div)`
   }
 `;
 
-export const BtnSlide = styled(motion.div)<{ isRight: boolean }>`
+export const BtnSlide = styled(motion.div)`
   position: absolute;
-  right: ${(props) => (props.isRight ? 0 : null)};
-  left: ${(props) => (props.isRight ? null : 0)};
   background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
   display: flex;
@@ -121,12 +113,12 @@ export const BigMovie = styled(motion.div)<{ scrollY: number }>`
   z-index: 3;
 `;
 
-export const BigCover = styled.div<{ bgPhoto: string }>`
+export const BigCover = styled.div<{ bgphoto: string }>`
   width: 100%;
   height: 450px;
   background-size: cover;
   background-image: linear-gradient(transparent, black),
-    url(${(props) => props.bgPhoto});
+    url(${(props) => props.bgphoto});
   background-position: center center;
   position: relative;
 `;
@@ -276,7 +268,7 @@ export const BtnSlideVariants = {
 export const offset = 6;
 
 export function Slider({ type }: { type: Types }) {
-  const width = useWindowDimensions();
+  const width = window.innerWidth;
   const navigate = useNavigate();
   const bigMovieMatch = useMatch(`/movies/${type}/:movieId`);
   const { data } = useQuery<IGetMoviesResult>(["movies", type], () =>
@@ -373,7 +365,7 @@ export function Slider({ type }: { type: Types }) {
                   transition={{
                     type: "tween",
                   }}
-                  bgPhoto={
+                  bgphoto={
                     movie.backdrop_path || movie.poster_path !== null
                       ? makeImagePath(
                           movie.backdrop_path || movie.poster_path,
@@ -391,7 +383,7 @@ export function Slider({ type }: { type: Types }) {
         </AnimatePresence>
         <BtnSlide
           onClick={decreaseIndex}
-          isRight={false}
+          style={{ left: 0 }}
           variants={BtnSlideVariants}
           initial="normal"
           whileHover="hover"
@@ -406,7 +398,7 @@ export function Slider({ type }: { type: Types }) {
         </BtnSlide>
         <BtnSlide
           onClick={increaseIndex}
-          isRight={true}
+          style={{ right: 0 }}
           variants={BtnSlideVariants}
           initial="normal"
           whileHover="hover"
@@ -435,7 +427,7 @@ export function Slider({ type }: { type: Types }) {
               {clickedMovie && (
                 <>
                   <BigCover
-                    bgPhoto={makeImagePath(
+                    bgphoto={makeImagePath(
                       clickedMovie.backdrop_path || clickedMovie.poster_path,
                       "w500"
                     )}
@@ -465,7 +457,7 @@ export function Slider({ type }: { type: Types }) {
                     <div>
                       <span>Genres: </span>
                       {clickedMovieDetail?.genres.map((data) => (
-                        <span> {data.name} </span>
+                        <span key={data.id}> {data.name} </span>
                       ))}
                     </div>
                     <div>
@@ -484,7 +476,7 @@ export function Slider({ type }: { type: Types }) {
 }
 
 export function SliderTvs({ type }: { type: TypeShows }) {
-  const width = useWindowDimensions();
+  const width = window.innerWidth;
   const navigate = useNavigate();
   const bigTvMatch = useMatch(`/tv/tvs/${type}/:tvId`);
   const { data } = useQuery<ITvShows>(["tvs", type], () => getTvShows(type));
@@ -529,10 +521,10 @@ export function SliderTvs({ type }: { type: TypeShows }) {
     bigTvMatch?.params.tvId &&
     data?.results.find((tv) => String(tv.id) === bigTvMatch.params.tvId);
 
-  const { data: clickedTvDetail, isLoading: isLoadingDetail } =
-    useQuery<ITvShowsDetail>([bigTvMatch?.params.tvId, "detail"], () =>
-      getTvShowsDetail(bigTvMatch?.params.tvId)
-    );
+  const { data: clickedTvDetail } = useQuery<ITvShowsDetail>(
+    [bigTvMatch?.params.tvId, "detail"],
+    () => getTvShowsDetail(bigTvMatch?.params.tvId)
+  );
 
   return (
     <>
@@ -573,7 +565,7 @@ export function SliderTvs({ type }: { type: TypeShows }) {
                   transition={{
                     type: "tween",
                   }}
-                  bgPhoto={
+                  bgphoto={
                     tv.backdrop_path || tv.poster_path !== null
                       ? makeImagePath(
                           tv.backdrop_path || tv.poster_path,
@@ -591,7 +583,7 @@ export function SliderTvs({ type }: { type: TypeShows }) {
         </AnimatePresence>
         <BtnSlide
           onClick={decreaseIndex}
-          isRight={false}
+          style={{ left: 0 }}
           variants={BtnSlideVariants}
           initial="normal"
           whileHover="hover"
@@ -606,7 +598,7 @@ export function SliderTvs({ type }: { type: TypeShows }) {
         </BtnSlide>
         <BtnSlide
           onClick={increaseIndex}
-          isRight={true}
+          style={{ right: 0 }}
           variants={BtnSlideVariants}
           initial="normal"
           whileHover="hover"
@@ -635,7 +627,7 @@ export function SliderTvs({ type }: { type: TypeShows }) {
               {clickedTv && (
                 <>
                   <BigCover
-                    bgPhoto={makeImagePath(
+                    bgphoto={makeImagePath(
                       clickedTv.backdrop_path || clickedTv.poster_path,
                       "w500"
                     )}

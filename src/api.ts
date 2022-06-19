@@ -138,7 +138,7 @@ export async function getMovies(type: Types) {
   ).json();
 }
 
-export async function getMovieDetail(movieId: string | undefined) {
+export async function getMovieDetail(movieId = "338953") {
   return (
     await fetch(
       `${BASE_PATH}/movie/${movieId}?api_key=${API_KEY}&language=ko-KR`
@@ -154,7 +154,7 @@ export async function getTvShows(type: TypeShows) {
   ).json();
 }
 
-export async function getTvShowsDetail(tvId: string | undefined) {
+export async function getTvShowsDetail(tvId = "92830") {
   return (
     await fetch(`${BASE_PATH}/tv/${tvId}?api_key=${API_KEY}&language=ko-KR`)
   ).json();

@@ -113,7 +113,7 @@ export function MoviesSearchResults({ keyword }: { keyword: string | null }) {
             transition={{
               type: "tween",
             }}
-            bgPhoto={
+            bgphoto={
               movie.backdrop_path || movie.poster_path !== null
                 ? makeImagePath(
                     movie.backdrop_path || movie.poster_path,
@@ -138,13 +138,13 @@ export function MoviesSearchResults({ keyword }: { keyword: string | null }) {
             transition={{
               type: "tween",
             }}
-            bgPhoto={
+            bgphoto={
               movie.backdrop_path || movie.poster_path !== null
                 ? makeImagePath(
                     movie.backdrop_path || movie.poster_path,
                     "w500"
                   )
-                : "https://ang-projects.com/public/uploads/contents/testi-no-image.png"
+                : "https://github.com/zerosial/NomadClone-ReactMovie/blob/main/public/noImage.gif?raw=true"
             }
           >
             <Info variants={infoVariants}>
@@ -168,7 +168,7 @@ export function MoviesSearchResults({ keyword }: { keyword: string | null }) {
               {clickedMovie && (
                 <>
                   <BigCover
-                    bgPhoto={makeImagePath(
+                    bgphoto={makeImagePath(
                       clickedMovie.backdrop_path || clickedMovie.poster_path,
                       "w500"
                     )}
@@ -277,7 +277,7 @@ export function TvsSearchResults({ keyword }: { keyword: string | null }) {
             transition={{
               type: "tween",
             }}
-            bgPhoto={
+            bgphoto={
               tv.backdrop_path || tv.poster_path !== null
                 ? makeImagePath(tv.backdrop_path || tv.poster_path, "w500")
                 : "https://github.com/zerosial/NomadClone-ReactMovie/blob/main/public/noImage.gif?raw=true"
@@ -299,7 +299,7 @@ export function TvsSearchResults({ keyword }: { keyword: string | null }) {
             transition={{
               type: "tween",
             }}
-            bgPhoto={
+            bgphoto={
               tv.backdrop_path || tv.poster_path !== null
                 ? makeImagePath(tv.backdrop_path || tv.poster_path, "w500")
                 : "https://github.com/zerosial/NomadClone-ReactMovie/blob/main/public/noImage.gif?raw=true"
@@ -326,7 +326,7 @@ export function TvsSearchResults({ keyword }: { keyword: string | null }) {
               {clickedTv && (
                 <>
                   <BigCover
-                    bgPhoto={makeImagePath(
+                    bgphoto={makeImagePath(
                       clickedTv.backdrop_path || clickedTv.poster_path,
                       "w500"
                     )}

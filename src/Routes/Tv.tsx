@@ -16,7 +16,7 @@ function Tv() {
       ) : (
         <>
           <Banner
-            bgPhoto={makeImagePath(
+            bgphoto={makeImagePath(
               data?.results[bannerIndex].backdrop_path || ""
             )}
           >
