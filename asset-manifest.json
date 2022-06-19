@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/NomadClone-ReactMovie/static/js/main.382eff2c.js",
+    "main.js": "/NomadClone-ReactMovie/static/js/main.30008122.js",
     "index.html": "/NomadClone-ReactMovie/index.html",
-    "main.382eff2c.js.map": "/NomadClone-ReactMovie/static/js/main.382eff2c.js.map"
+    "main.30008122.js.map": "/NomadClone-ReactMovie/static/js/main.30008122.js.map"
   },
   "entrypoints": [
-    "static/js/main.382eff2c.js"
+    "static/js/main.30008122.js"
   ]
 }
