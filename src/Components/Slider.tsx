@@ -164,15 +164,17 @@ export const BigInfo = styled.div`
 `;
 
 export const BigSubInfo = styled.div`
-  margin: 0px 20px;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   position: absolute;
-  bottom: 20px;
   font-size: 20px;
   font-weight: 600;
+  padding: 10px;
+  bottom: 0px;
+  background-color: ${(props) => props.theme.black.veryDark};
   div {
     span:first-child {
       color: #808e9b;
@@ -458,9 +460,7 @@ export function Slider({ type }: { type: Types }) {
                       />
                     )}
                   </BigInfo>
-                  <BigOverview>
-                    {clickedMovie.overview.slice(0, 220) + "..."}
-                  </BigOverview>
+                  <BigOverview>{clickedMovie.overview}</BigOverview>
                   <BigSubInfo>
                     <div>
                       <span>Genres: </span>
@@ -656,9 +656,7 @@ export function SliderTvs({ type }: { type: TypeShows }) {
                     </Adult>
                     <Ratings rating={clickedTvDetail?.vote_average as number} />
                   </BigInfo>
-                  <BigOverview>
-                    {clickedTv.overview.slice(0, 220) + "..."}
-                  </BigOverview>
+                  <BigOverview>{clickedTv.overview}</BigOverview>
                   <BigSubInfo>
                     <div>
                       <span>Genres: </span>

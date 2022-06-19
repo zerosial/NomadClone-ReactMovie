@@ -192,9 +192,7 @@ export function MoviesSearchResults({ keyword }: { keyword: string | null }) {
                       />
                     )}
                   </BigInfo>
-                  <BigOverview>
-                    {clickedMovie.overview.slice(0, 220) + "..."}
-                  </BigOverview>
+                  <BigOverview>{clickedMovie.overview}</BigOverview>
                   <BigSubInfo>
                     <div>
                       <span>Genres: </span>
@@ -355,9 +353,7 @@ export function TvsSearchResults({ keyword }: { keyword: string | null }) {
                       />
                     )}
                   </BigInfo>
-                  <BigOverview>
-                    {clickedTv.overview.slice(0, 220) + "..."}
-                  </BigOverview>
+                  <BigOverview>{clickedTv.overview}</BigOverview>
                   <BigSubInfo>
                     <div>
                       <span>Genres: </span>

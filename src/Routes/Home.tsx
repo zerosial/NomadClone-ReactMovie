@@ -13,11 +13,12 @@ export const Loader = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: black;
 `;
 
 export const Banner = styled.div<{ bgPhoto: string }>`
   height: 100vh;
-  background-color: red;
+  background-color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
